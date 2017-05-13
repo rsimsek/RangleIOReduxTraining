@@ -1,0 +1,23 @@
+{
+  "name": "react-training-RoboDex",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://aneagoie.github.io/react-training-RoboDex",
+  "devDependencies": {
+    "gh-pages": "^0.12.0",
+    "react-scripts": "0.8.4"
+  },
+  "dependencies": {
+    "fetch": "^1.1.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "tachyons": "^4.6.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy" : "npm run build && gh-pages -d build"
+  }
+}
