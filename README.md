@@ -1,4 +1,4 @@
-# RangleIOReduxTraining
+# Rangle.IO Redux Training
 Rangle.io React online training Part 2 - Redux
 I would like to thank RANGLE.IO(https://rangle.io/) for their amazing free React courses. It is a fantastic training which helps understanding everything about React ecosystem. 
 

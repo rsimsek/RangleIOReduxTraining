@@ -1,40 +1,37 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import "./App.css";
 import CardList from "../Components/CardList";
 import SearchBox from "../Components/SearchBox";
-import { apiCall } from "../api/api";
 import Scroll from "../Components/Scroll";
 import { connect } from 'react-redux';
-import { setSearchTerm } from '../actions';
+import { setSearchTerm, requestRobots } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
-    searchTerm: state.searchTerm
+    searchTerm: state.search.searchTerm,
+    robots: state.robots.robots,
+    isPending: state.robots.isPending,
+    error: state.robots.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSearchChange: event => dispatch(setSearchTerm(event.target.value))
+    onSearchChange: event => dispatch(setSearchTerm(event.target.value)),
+    onRequestRobots: () => dispatch(requestRobots)
   }
 }
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = { robots: [], isPending: true };
-  }
-  componentDidMount() {
-    console.log(this.props.store);
-    apiCall("https://jsonplaceholder.typicode.com/users").then(
-      response => this.setState({ robots: response, isPending: false })
-    );
+  
+  componentDidMount(){
+    this.props.onRequestRobots();
   }
 
   render() {
-    const { robots, isPending } = this.state;
-    const { onSearchChange, searchTerm } = this.props;
-
+    const { onSearchChange, searchTerm, robots, isPending } = this.props;
+    
     const filteredRobots = robots.filter(
       robot => robot.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -55,3 +52,11 @@ class App extends Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+App.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  robots: PropTypes.array.isRequired,
+  isPending: PropTypes.bool.isRequired,
+  onRequestRobots: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func.isRequired
+}
