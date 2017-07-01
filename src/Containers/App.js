@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   render() {
-    const { onSearchChange, searchTerm, robots, isPending } = this.props;
+    const { onSearchChange, searchTerm, robots, isPending, error } = this.props;
     
     const filteredRobots = robots.filter(
       robot => robot.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -39,6 +39,7 @@ class App extends Component {
       <div className="tc">
         <h1>RoboDex</h1>
         <SearchBox onSearchChange={onSearchChange} />
+        { error ? <h2>Error: {error}</h2> : null }
         <Scroll>
           {
             isPending
