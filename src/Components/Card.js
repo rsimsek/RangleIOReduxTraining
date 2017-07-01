@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Card = ({ id, name, email }) => {
   return (
@@ -13,8 +14,8 @@ const Card = ({ id, name, email }) => {
 };
 
 Card.propTypes = {
-  id: React.PropTypes.number.isRequired,
-  name: React.PropTypes.string.isRequired,
-  email: React.PropTypes.string.isRequired
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired
 };
-export default Card
+export default Card;
